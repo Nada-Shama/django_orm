@@ -1,0 +1,20 @@
+body{
+    margin: 20px;
+}
+#show_table{
+    width: 90%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+
+
+
+.shows{
+    margin: 20px;
+    
+}
+
+.blank{
+    height: 100px;
+}
