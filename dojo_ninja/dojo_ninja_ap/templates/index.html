@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class='main'>
+        <div >
+            <h2>Add a dojo</h2>
+            <form class="dojo" method='POST' action="{%url 'dojo'%}">
+                {%csrf_token%}
+                <input type="hidden" name="which_form" value="dojo">
+                <lable>Name</lable>
+                <input type="text" name='d_name'>
+                <lable>City</lable>
+                <input type="text" name='city'>
+                <lable>State</lable>
+                <input type="text" name='state'>
+                <button type='Submit'>Submit</button>
+            </form>
+        </div>
+        <div  >
+            <h2>Add a Ninja</h2>
+            <form class ='ninja' method='POST' action="{%url 'dojo'%}">
+                {%csrf_token%}
+                <input type="hidden" name="which_form" value="ninja">
+                <lable>first Name</lable>
+                <input type="text" name='f_name'>
+                <lable>last name</lable>
+                <input type="text" name="l_name">
+                <lable>dojo</lable>
+               
+                <select  name="sdojo">
+                      {%for dojo in dojos%}
+                    <option  value="{{dojo.id}}">{{dojo.name}}</option>
+                      {%endfor%}
+                </select>
+                
+                <button type='Submit'>Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <div class='list'>
+        <H2>All the dogos</H2>
+        {% for dojo in dojos %}
+        <h3>Ninja of the {{dojo.name}}</h3>
+            {% for ninja in ninjas %}
+           {%if ninja.dojo.name == dojo.name%}
+        <ul>
+            <li>{{ninja.f_name}} {{ninja.l_name}}</li>               
+        </ul>
+             {%endif%} 
+            {%endfor%}
+        {%endfor%}
+    </div>
+
+</body>
+</html>
